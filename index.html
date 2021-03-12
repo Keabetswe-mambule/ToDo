@@ -28,6 +28,25 @@
             <ons-list-header>Tasks</ons-list-header>
             <!--<ons-list-item modifier="longdivider">Item A</ons-list-item>-->
           </ons-list>
+          <ons-dialog id="my-dialog">
+            <div style="text-align: center; padding: 10px">
+              <p>
+                <ons-input
+                  id="addTask"
+                  modifier="underbar"
+                  placeholder="Add task"
+                  float
+                ></ons-input>
+              </p>
+
+              <p>
+                <ons-button onclick="hideDialog('my-dialog')">Add</ons-button>
+              </p>
+            </div>
+          </ons-dialog>
+          <ons-fab id="add" position="bottom right">
+            <ons-icon icon="md-plus"></ons-icon>
+          </ons-fab>
         </div>
       </ons-page>
     </template>
