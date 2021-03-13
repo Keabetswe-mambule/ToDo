@@ -1,5 +1,5 @@
 //array to holds tasks
-let tasks = ["Buy milk", "Go to class", "Drink coffee", "Eat a banana"];
+let tasks = [];
 //array to holds archived tasks
 let archived = [];
 
@@ -11,9 +11,12 @@ document.addEventListener("init", function (event) {
 
   if (page.id === "page1") {
     //listen to fab touch on page1
-    page.querySelector("#add").onclick = function () {
+    page.querySelector("#add").onclick = () => {
       //document.querySelector("#myNavigator").pushPage("page2.html", { data: { title: "Archived" } });
       showTemplateDialog();
+    };
+    page.querySelector("#adda").onclick = () => {
+      hideDialog("my-dialog");
     };
   } else if (page.id === "page2") {
     page.querySelector("ons-toolbar .center").innerHTML = page.data.title;
@@ -26,7 +29,7 @@ let fillLister = () => {
     let newItem = document.createElement("ons-list-item");
     let textnode = document.createTextNode(`${task}`);
     newItem.appendChild(textnode);
-    lister.insertBefore(newItem, lister.childNodes[2]);
+    lister.insertBefore(newItem, lister.childNodes[1]);
   });
 };
 
@@ -41,7 +44,7 @@ let clearLister = () => {
 
 //show dialog to add tasks from when called
 let showTemplateDialog = () => {
-  var dialog = document.getElementById("my-dialog");
+  var dialog = document.querySelector("#my-dialog");
 
   if (dialog) {
     dialog.show();
@@ -54,6 +57,11 @@ let showTemplateDialog = () => {
 
 //hide dialog and save task to holder array
 let hideDialog = (id) => {
-  document.getElementById(id).hide();
+  document.querySelector(`#${id}`).hide();
+  tasks.push(document.querySelector("#addTask").value);
+  clearLister();
+  fillLister();
+  document.querySelector("#addTask").value = "";
+  ons.notification.toast("Task Added", { timeout: 1000, animation: "fall" });
 };
 ///////update README.md to git repo//////////
