@@ -56,4 +56,4 @@ let showTemplateDialog = () => {
 let hideDialog = (id) => {
   document.getElementById(id).hide();
 };
-///////add README.md to git repo//////////
+///////update README.md to git repo//////////
