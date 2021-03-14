@@ -57,11 +57,21 @@ let showTemplateDialog = () => {
 
 //hide dialog and save task to holder array
 let hideDialog = (id) => {
-  document.querySelector(`#${id}`).hide();
-  tasks.push(document.querySelector("#addTask").value);
-  clearLister();
-  fillLister();
-  document.querySelector("#addTask").value = "";
-  ons.notification.toast("Task Added", { timeout: 1000, animation: "fall" });
+  if (
+    document.querySelector("#addTask").value != "" &&
+    document.querySelector("#addTask").value != " "
+  ) {
+    document.querySelector(`#${id}`).hide();
+    tasks.push(document.querySelector("#addTask").value);
+    clearLister();
+    fillLister();
+    document.querySelector("#addTask").value = "";
+    ons.notification.toast("Task Added", { timeout: 1000, animation: "fall" });
+  } else {
+    ons.notification.toast("Task can not be empty", {
+      timeout: 1000,
+      animation: "fall",
+    });
+  }
 };
 ///////update README.md to git repo//////////

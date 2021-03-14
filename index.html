@@ -25,7 +25,7 @@
         </ons-toolbar>
         <div class="container">
           <ons-list id="lister" modifier="inset">
-            <ons-list-header>Tasks</ons-list-header>
+            <ons-list-header><strong>Tasks</strong></ons-list-header>
             <!--<ons-list-item modifier="longdivider">Item A</ons-list-item>-->
           </ons-list>
           <ons-dialog id="my-dialog">
@@ -41,13 +41,17 @@
 
               <p>
                 <ons-button id="adda">Add</ons-button>
+                <ons-button
+                  onclick="document.querySelector('#my-dialog').hide();"
+                  >Close</ons-button
+                >
               </p>
             </div>
           </ons-dialog>
-          <ons-fab id="add" position="bottom right">
-            <ons-icon icon="md-plus"></ons-icon>
-          </ons-fab>
         </div>
+        <ons-fab id="add" position="bottom right">
+          <ons-icon icon="md-plus"></ons-icon>
+        </ons-fab>
       </ons-page>
     </template>
 
