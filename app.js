@@ -1,7 +1,5 @@
 //array to holds tasks
 let tasks = [];
-//array to holds archived tasks
-let archived = [];
 
 //listen to events in the app pages
 document.addEventListener("init", function (event) {
@@ -27,8 +25,25 @@ document.addEventListener("init", function (event) {
 let fillLister = () => {
   tasks.forEach((task) => {
     let newItem = document.createElement("ons-list-item");
+
+    let labelForBox = document.createElement("label");
+    labelForBox.setAttribute("class", "left");
+    let checkbox = document.createElement("ons-checkbox");
+    checkbox.setAttribute("input-id", tasks.indexOf(task));
+    labelForBox.appendChild(checkbox);
+
+    let labelForText = document.createElement("label");
+    labelForText.setAttribute("for", tasks.indexOf(task));
+    labelForText.setAttribute("class", "center");
+    labelForText.setAttribute(
+      "ondblclick",
+      `deleteTask(${tasks.indexOf(task)})`
+    );
     let textnode = document.createTextNode(`${task}`);
-    newItem.appendChild(textnode);
+    labelForText.appendChild(textnode);
+
+    newItem.appendChild(labelForBox);
+    newItem.appendChild(labelForText);
     lister.insertBefore(newItem, lister.childNodes[1]);
   });
 };
@@ -74,4 +89,11 @@ let hideDialog = (id) => {
     });
   }
 };
-///////update README.md to git repo//////////
+
+let deleteTask = (id) => {
+  if (id > -1) {
+    tasks.splice(id, 1);
+    clearLister();
+    fillLister();
+  }
+};
